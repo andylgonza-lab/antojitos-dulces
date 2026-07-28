@@ -42,6 +42,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // ---- Año dinámico en el footer ----
   document.getElementById("year").textContent = new Date().getFullYear();
 
+  // ---- Contador de visitas ----
+  // Usa CountAPI (gratis, sin backend propio): cada carga de página suma 1
+  // al contador guardado bajo el namespace/key que elijas. Si más adelante
+  // armas tu propio backend con Postgres, puedes reemplazar esto por una
+  // llamada a tu propio endpoint (ej: POST /api/visitas).
+  const visitCountEl = document.getElementById("visitCount");
+  fetch("https://api.countapi.xyz/hit/antojitosdulces-la/visitas-web")
+    .then((res) => res.json())
+    .then((data) => {
+      visitCountEl.textContent = data.value.toLocaleString("es-CL");
+    })
+    .catch(() => {
+      visitCountEl.textContent = "—";
+    });
+
   // ---- Placeholders de Instagram ----
   // Reemplaza este bloque por tus fotos reales (ver README.md)
   const instaGrid = document.getElementById("instaGrid");
@@ -75,6 +90,32 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   instaNext.addEventListener("click", () => {
     instaGrid.scrollBy({ left: scrollAmount(), behavior: "smooth" });
+  });
+
+  // ---- Modal de precios ----
+  const preciosModal = document.getElementById("preciosModal");
+  const preciosTrigger = document.getElementById("preciosTrigger");
+  const preciosClose = document.getElementById("preciosClose");
+  const preciosOverlay = document.getElementById("preciosOverlay");
+  const preciosCotizar = document.getElementById("preciosCotizar");
+
+  function abrirPreciosModal(e) {
+    if (e) e.preventDefault();
+    preciosModal.classList.add("is-open");
+    preciosModal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+  }
+  function cerrarPreciosModal() {
+    preciosModal.classList.remove("is-open");
+    preciosModal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+  }
+  preciosTrigger.addEventListener("click", abrirPreciosModal);
+  preciosClose.addEventListener("click", cerrarPreciosModal);
+  preciosOverlay.addEventListener("click", cerrarPreciosModal);
+  preciosCotizar.addEventListener("click", cerrarPreciosModal);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") cerrarPreciosModal();
   });
 
   // ---- Envío del formulario de cotización ----

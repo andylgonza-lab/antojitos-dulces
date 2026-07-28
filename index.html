@@ -35,6 +35,7 @@
           <a href="#catalogo">Eventos especiales</a>
         </div>
       </div>
+      <a href="#precios" id="preciosTrigger">Precios</a>
     </nav>
 
     <a href="#top" class="nav__logo-badge">
@@ -113,12 +114,12 @@
     <p class="eyebrow eyebrow--center">Nuestro catálogo ♥</p>
     <h2 class="section__title">Tortas para cada ocasión<span class="title-rule"></span></h2>
     <div class="catalogo__grid">
-      <div class="cat-card" style="background-image:url('assets/cumpleaños.jpeg')"><div class="cat-card__label">Tortas<span>Cumpleaños</span></div></div>
-      <div class="cat-card" style="background-image:url('assets/infantil.jpeg')"><div class="cat-card__label">Tortas<span>Infantiles</span></div></div>
-      <div class="cat-card" style="background-image:url('assets/cumpleaños.jpeg')"><div class="cat-card__label">Tortas<span>Premium</span></div></div>
-      <div class="cat-card" style="background-image:url('assets/navidad.jpeg')"><div class="cat-card__label">Tortas<span>Temáticas</span></div></div>
-      <div class="cat-card" style="background-image:url('assets/coctel.jpeg')"><div class="cat-card__label">Cupcakes<span>Y dulces</span></div></div>
-      <div class="cat-card" style="background-image:url('assets/cumpleaños.jpeg')"><div class="cat-card__label">Eventos<span>Especiales</span></div></div>
+      <div class="cat-card" style="background-image:url('assets/cumpleaños.png')"><div class="cat-card__label">Tortas<span>Cumpleaños</span></div></div>
+      <div class="cat-card" style="background-image:url('assets/infantil.png')"><div class="cat-card__label">Tortas<span>Infantiles</span></div></div>
+      <div class="cat-card" style="background-image:url('assets/corona.png')"><div class="cat-card__label">Tortas<span>Premium</span></div></div>
+      <div class="cat-card" style="background-image:url('assets/navidad.png')"><div class="cat-card__label">Tortas<span>Temáticas</span></div></div>
+      <div class="cat-card" style="background-image:url('assets/coctel.png')"><div class="cat-card__label">Coctelería<span>Y dulces</span></div></div>
+      <div class="cat-card" style="background-image:url('assets/torta_principal.png')"><div class="cat-card__label">Eventos<span>Especiales</span></div></div>
     </div>
   </div>
 </section>
@@ -197,17 +198,7 @@
   </div>
 </section>
 
-<!-- ===== INSTAGRAM ===== -->
-<!-- <section class="section section--olive" id="galeria">
-  <div class="section__inner insta__center">
-    <h2 class="section__title section__title--light">Síguenos en Instagram<span class="title-rule"></span></h2>
-    <div class="insta__grid" id="instaGrid"></div>
-    <a href="https://www.instagram.com/antojitos_dulces_la/" target="_blank" rel="noopener" class="btn btn--gold">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v10/icons/instagram.svg" alt="" class="icon">
-      @antojitos_dulces_la
-    </a>
-  </div>
-</section> -->
+
 
 <!-- ===== INSTAGRAM ===== -->
 <section class="section section--olive" id="galeria">
@@ -244,9 +235,15 @@
       </div>
 
       <form class="form" id="cotizacionForm" action="https://formspree.io/f/xvzedqbb" method="POST">
-        <div class="form__row">
-          <label for="nombre">Nombre</label>
-          <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+        <div class="form__row form__row--split">
+          <div>
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+          </div>
+          <div>
+            <label for="apellido">Apellido</label>
+            <input type="text" id="apellido" name="apellido" required placeholder="Tu apellido">
+          </div>
         </div>
         <div class="form__row">
           <label for="telefono">Teléfono o WhatsApp</label>
@@ -268,17 +265,60 @@
             <input type="date" id="fecha" name="fecha">
           </div>
         </div>
-        <div class="form__row">
-          <label for="personas">Cantidad de personas aprox.</label>
-          <input type="number" id="personas" name="personas" min="1" placeholder="Ej: 20">
+        <div class="form__row form__row--split">
+          <div>
+            <label for="direccion">Calle y número</label>
+            <input type="text" id="direccion" name="direccion" placeholder="Ej: Los Aromos 123">
+          </div>
+          <div>
+            <label for="poblacion">Población / sector</label>
+            <input type="text" id="poblacion" name="poblacion" placeholder="Ej: Villa El Litre">
+          </div>
+        </div>
+        <div class="form__row form__row--split">
+          <div>
+            <label for="personas">Cantidad de personas</label>
+            <select id="personas" name="personas" required>
+              <option value="">Selecciona...</option>
+              <option value="15 personas">15 personas</option>
+              <option value="20 personas">20 personas</option>
+              <option value="30 personas">30 personas</option>
+              <option value="40 personas">40 personas</option>
+            </select>
+          </div>
+          <div>
+            <label for="torta">Tipo de torta</label>
+            <select id="torta" name="torta">
+              <option value="Aún no sé, quiero orientación">Aún no sé, quiero orientación</option>
+              <option>Torta Yogurth</option>
+              <option>Manjar Platano</option>
+              <option>Manjar Mermelada</option>
+              <option>Manjar Crema</option>
+              <option>Piña crema</option>
+              <option>Piña manjar</option>
+              <option>Durazno Crema</option>
+              <option>Durazno manjar</option>
+              <option>Torta lúcuma manjar</option>
+              <option>Torta Frambuesa-crema</option>
+              <option>Torta Mocca</option>
+              <option>Torta Amor (bizcocho)</option>
+              <option>Tres Leches</option>
+              <option>Manjar Nuez</option>
+              <option>Selva Negra</option>
+              <option>Torta chocolatosa</option>
+              <option>Torta amor (hojarasca)</option>
+              <option>Torta Celestial</option>
+            </select>
+          </div>
         </div>
         <div class="form__row">
           <label for="mensaje">Cuéntanos tu idea</label>
-          <textarea id="mensaje" name="mensaje" rows="3" placeholder="Sabores, estilo, presupuesto..."></textarea>
+          <textarea id="mensaje" name="mensaje" rows="3" placeholder="Decoración, colores, algún detalle especial..."></textarea>
         </div>
         <button type="submit" class="btn btn--gold form__submit">Enviar cotización</button>
         <p class="form__status" id="formStatus" role="status"></p>
       </form>
+      <p style="text-align:center; font-size:.78rem; color:var(--brown-soft); margin-top:1rem;">¿No encuentras tu torta ideal en la lista? Elige "Aún no sé, quiero orientación" y cuéntanos en el mensaje.</p>
     </div>
   </div>
 </section>
@@ -308,8 +348,56 @@
 <!-- ===== BOTTOM BAR ===== -->
 <div class="bottombar">
   <div class="bottombar__inner">
-    <span>&copy; <span id="year"></span> Antojitos Dulces LA. Todos los derechos reservados.</span>
-    <span>Diseñado con ♥</span>
+    <span>&copy; <span id="year"></span> Antojitos Dulces. Todos los derechos reservados.</span>
+    <span class="bottombar__visits">👁️ <span id="visitCount">...</span> visitas</span>
+    <span>Creado por Forzax Gonzalez</span>
+  </div>
+</div>
+
+<!-- ===== MODAL DE PRECIOS ===== -->
+<div class="modal" id="preciosModal" aria-hidden="true">
+  <div class="modal__overlay" id="preciosOverlay"></div>
+  <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="preciosTitle">
+    <button class="modal__close" id="preciosClose" aria-label="Cerrar">✕</button>
+    <p class="eyebrow eyebrow--center">Precios ♥</p>
+    <h2 id="preciosTitle" class="section__title" style="margin-bottom:1.4rem;">Tortas por cantidad de personas<span class="title-rule"></span></h2>
+    <div class="precios__wrap">
+      <table class="precios__table">
+        <thead>
+          <tr>
+            <th>Tipo de torta</th>
+            <th>15 personas</th>
+            <th>20 personas</th>
+            <th>30 personas</th>
+            <th>40 personas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Torta Yogurth</td><td>$12.000</td><td>$17.000</td><td>$22.000</td><td class="precios__na">No disponible</td></tr>
+          <tr><td>Manjar Platano</td><td>$19.000</td><td>$27.000</td><td>$36.000</td><td>$45.500</td></tr>
+          <tr><td>Manjar Mermelada</td><td>$19.000</td><td>$27.000</td><td>$36.000</td><td>$45.500</td></tr>
+          <tr><td>Manjar Crema</td><td>$19.000</td><td>$27.000</td><td>$36.000</td><td>$45.500</td></tr>
+          <tr><td>Piña crema</td><td>$19.000</td><td>$27.000</td><td>$36.000</td><td>$45.500</td></tr>
+          <tr><td>Piña manjar</td><td>$19.000</td><td>$27.000</td><td>$36.000</td><td>$45.500</td></tr>
+          <tr><td>Durazno Crema</td><td>$19.000</td><td>$27.000</td><td>$36.000</td><td>$45.500</td></tr>
+          <tr><td>Durazno manjar</td><td>$19.000</td><td>$27.000</td><td>$36.000</td><td>$45.500</td></tr>
+          <tr><td>Torta lúcuma manjar</td><td>$19.000</td><td>$27.000</td><td>$36.000</td><td>$45.500</td></tr>
+          <tr><td>Torta Frambuesa-crema</td><td>$19.000</td><td>$27.000</td><td>$36.000</td><td>$45.500</td></tr>
+          <tr><td>Torta Mocca</td><td>$19.000</td><td>$27.000</td><td>$36.000</td><td>$45.500</td></tr>
+          <tr><td>Torta Amor (bizcocho)</td><td>$22.000</td><td>$32.000</td><td>$42.000</td><td>$53.500</td></tr>
+          <tr><td>Tres Leches</td><td>$26.000</td><td>$32.000</td><td>$50.000</td><td>$64.000</td></tr>
+          <tr><td>Manjar Nuez</td><td>$26.000</td><td>$32.000</td><td>$50.000</td><td>$64.000</td></tr>
+          <tr><td>Selva Negra</td><td>$26.000</td><td>$32.000</td><td>$50.000</td><td>$64.000</td></tr>
+          <tr><td>Torta chocolatosa</td><td>$32.000</td><td>$42.000</td><td>$62.000</td><td>$80.000</td></tr>
+          <tr><td>Torta amor (hojarasca)</td><td>$27.000</td><td>$42.000</td><td>$52.000</td><td>$67.000</td></tr>
+          <tr><td>Torta Celestial</td><td>$32.000</td><td>$42.000</td><td>$62.000</td><td>$80.000</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="precios__nota">Precios referenciales — pueden variar según decoración y personalización. Escríbenos para una cotización exacta según lo que imaginas. 💛</p>
+    <div style="text-align:center; margin-top:1.4rem;">
+      <a href="#contacto" class="btn btn--gold" id="preciosCotizar">Cotiza tu torta</a>
+    </div>
   </div>
 </div>
 
