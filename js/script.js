@@ -62,13 +62,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const instaGrid = document.getElementById("instaGrid");
 
   const fotos = [
-    "ig-1.jpeg",
-    "ig-2.jpeg",
-    "ig-3.jpeg",
-    "ig-4.jpeg",
-    "ig-5.jpeg",
+    "ig-1.png",
+    "ig-2.png",
+    "ig-3.png",
+    "ig-4.png",
+    "ig-5.png",
     "ig-6.png",
-    "ig-7.jpeg",
+    "ig-7.png",
     "ig-8.png",
     "ig-9.png",
     "ig-10.png",
