@@ -87,9 +87,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
   instaPrev.addEventListener("click", () => {
     instaGrid.scrollBy({ left: -scrollAmount(), behavior: "smooth" });
+    reiniciarAutoAvance();
   });
   instaNext.addEventListener("click", () => {
     instaGrid.scrollBy({ left: scrollAmount(), behavior: "smooth" });
+    reiniciarAutoAvance();
+  });
+
+  // ---- Auto-avance del slider (galería automática) ----
+  const INSTA_AUTO_MS = 3500; // cada cuánto avanza solo, en milisegundos
+  let instaAutoTimer = null;
+
+  function avanzarAuto() {
+    const maxScroll = instaGrid.scrollWidth - instaGrid.clientWidth;
+    if (instaGrid.scrollLeft >= maxScroll - 5) {
+      instaGrid.scrollTo({ left: 0, behavior: "smooth" }); // vuelve al inicio
+    } else {
+      instaGrid.scrollBy({ left: scrollAmount(), behavior: "smooth" });
+    }
+  }
+
+  function iniciarAutoAvance() {
+    detenerAutoAvance();
+    instaAutoTimer = setInterval(avanzarAuto, INSTA_AUTO_MS);
+  }
+  function detenerAutoAvance() {
+    if (instaAutoTimer) clearInterval(instaAutoTimer);
+  }
+  function reiniciarAutoAvance() {
+    // al hacer clic en una flecha, reinicia la cuenta regresiva del auto-avance
+    iniciarAutoAvance();
+  }
+
+  iniciarAutoAvance();
+
+  // Se pausa mientras el mouse está encima o mientras tocas el carrusel
+  // (para que no "se te escape" mientras estás mirando o deslizando)
+  ["mouseenter", "touchstart"].forEach((evento) => {
+    instaGrid.addEventListener(evento, detenerAutoAvance);
+  });
+  ["mouseleave", "touchend"].forEach((evento) => {
+    instaGrid.addEventListener(evento, iniciarAutoAvance);
   });
 
   // ---- Modal de precios ----
@@ -122,11 +160,30 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("cotizacionForm");
   const status = document.getElementById("formStatus");
 
+  // URL de tu backend local (ver carpeta backend/). Solo funciona mientras
+  // tengas ese servidor corriendo con "npm start" en otra terminal.
+  const BACKEND_URL = "http://localhost:3000/api/cotizaciones";
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     status.textContent = "Enviando tu cotización...";
 
     const formData = new FormData(form);
+
+    // Guardar en PostgreSQL (backend propio) — en paralelo, sin bloquear
+    // el envío del correo. Si el backend no está corriendo, esto falla
+    // en silencio y el formulario sigue funcionando igual por correo.
+    const datos = Object.fromEntries(formData.entries());
+    fetch(BACKEND_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(datos),
+    }).catch((err) => {
+      console.warn(
+        "No se pudo guardar en la base de datos local (¿está el backend corriendo?):",
+        err
+      );
+    });
 
     try {
       const response = await fetch(form.action, {
