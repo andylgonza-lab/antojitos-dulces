@@ -151,6 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.remove("modal-open");
   }
   preciosTrigger.addEventListener("click", abrirPreciosModal);
+  document.getElementById("preciosTriggerMapa")?.addEventListener("click", abrirPreciosModal);
   preciosClose.addEventListener("click", cerrarPreciosModal);
   preciosOverlay.addEventListener("click", cerrarPreciosModal);
   preciosCotizar.addEventListener("click", cerrarPreciosModal);

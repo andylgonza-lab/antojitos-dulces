@@ -486,6 +486,26 @@ body.modal-open{ overflow: hidden; }
   margin-top: 4px;
 }
 .contacto__mapa iframe{ display:block; }
+
+.precios__inline{
+  width: 100%; margin-top: 14px;
+  display: flex; align-items: center; gap: 14px;
+  background: #fff; border: 1px solid rgba(184,134,47,.18);
+  border-radius: var(--radius); padding: 16px 18px;
+  box-shadow: var(--shadow); cursor: pointer;
+  font-family: var(--font-body); text-align: left;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.precios__inline:hover{ transform: translateY(-2px); box-shadow: 0 16px 32px rgba(140,100,32,.22); }
+.precios__inline-icon{
+  flex-shrink: 0; width: 42px; height: 42px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  display:flex; align-items:center; justify-content:center; font-size: 1.15rem;
+}
+.precios__inline-text{ flex: 1; display:flex; flex-direction:column; gap: 2px; }
+.precios__inline-text strong{ font-size: .88rem; color: var(--brown); }
+.precios__inline-text span{ font-size: .78rem; color: var(--brown-soft); }
+.precios__inline-arrow{ color: var(--gold-deep); font-size: 1.1rem; flex-shrink:0; }
 .form{ background:#fff; border-radius: var(--radius); padding: 26px; box-shadow: var(--shadow); }
 .form__row{ margin-bottom: 14px; display:flex; flex-direction:column; gap:5px; }
 .form__row--split{ flex-direction:row; gap: 16px; }
@@ -521,10 +541,16 @@ body.modal-open{ overflow: hidden; }
   .cta-footer__item{ flex-direction:column; align-items:center; text-align:center; gap:.25em; }
   .cta-footer__badge{ order:-1; }
   .contacto{ grid-template-columns: 1fr; }
+  .nav__inner{ flex-wrap: wrap; }
+  .nav__logo-badge{ order: 1; }
+  .nav__burger{ order: 2; }
+  #navLinksLeft{ order: 3; }
+  #navLinksRight{ order: 4; }
   .nav__links{
-    position:absolute; top:100%; left:0; right:0;
+    position: static; /* ya no absolute: evita que los dos menús se superpongan */
+    flex: 1 0 100%; width: 100%;
     background: var(--white); flex-direction:column; padding: 16px 24px; gap:14px;
-    border-bottom: 1px solid rgba(184,134,47,.15);
+    border-top: 1px solid rgba(184,134,47,.15);
     display:none;
   }
   .nav__links.is-open{ display:flex; }
