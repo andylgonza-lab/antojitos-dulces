@@ -6,24 +6,34 @@
 
 CREATE TABLE IF NOT EXISTS clientes (
   id          SERIAL PRIMARY KEY,
-  nombre      VARCHAR(100) NOT NULL,
-  apellido    VARCHAR(100) NOT NULL,
-  telefono    VARCHAR(100) NOT NULL,
-  direccion   VARCHAR(100),              -- calle y número (opcional)
-  poblacion   VARCHAR(150),              -- población / sector (opcional)
+  nombre      TEXT NOT NULL,
+  apellido    TEXT NOT NULL,
+  telefono    TEXT NOT NULL,
+  direccion   TEXT,              -- calle y número (opcional)
+  poblacion   TEXT,              -- población / sector (opcional)
   creado_en   TIMESTAMP DEFAULT NOW()
 );
 
 CREATE TABLE IF NOT EXISTS cotizaciones (
   id                 SERIAL PRIMARY KEY,
   cliente_id         INTEGER NOT NULL REFERENCES clientes(id) ON DELETE CASCADE,
-  tipo_evento        VARCHAR(100),
+  tipo_evento        TEXT,
   fecha_evento       DATE,
-  cantidad_personas  INTEGER,       -- "15 personas", "20 personas", etc.
-  tipo_torta         VARCHAR(100),
-  mensaje            VARCHAR(500),
+  cantidad_personas  TEXT,       -- "15 personas", "20 personas", etc.
+  tipo_torta         TEXT,
+  mensaje            TEXT,
   creado_en          TIMESTAMP DEFAULT NOW()
 );
 
 -- Índice para buscar rápido las cotizaciones de un cliente
 CREATE INDEX IF NOT EXISTS idx_cotizaciones_cliente ON cotizaciones(cliente_id);
+
+-- ============================================================
+-- Contador de visitas: una sola fila que se va incrementando
+-- ============================================================
+CREATE TABLE IF NOT EXISTS visitas (
+  id    INTEGER PRIMARY KEY DEFAULT 1,
+  total INTEGER NOT NULL DEFAULT 0,
+  CONSTRAINT solo_una_fila CHECK (id = 1)
+);
+INSERT INTO visitas (id, total) VALUES (1, 0) ON CONFLICT (id) DO NOTHING;

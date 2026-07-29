@@ -93,6 +93,20 @@ app.get("/api/cotizaciones", async (req, res) => {
   }
 });
 
+// ---- Contador de visitas ----
+// Suma 1 cada vez que alguien carga la página y devuelve el total.
+app.post("/api/visitas/hit", async (req, res) => {
+  try {
+    const result = await pool.query(
+      `UPDATE visitas SET total = total + 1 WHERE id = 1 RETURNING total`
+    );
+    res.json({ total: result.rows[0].total });
+  } catch (err) {
+    console.error("Error al actualizar el contador de visitas:", err);
+    res.status(500).json({ error: "Error al actualizar el contador de visitas." });
+  }
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`✅ Backend de Antojitos Dulces escuchando en http://localhost:${PORT}`);

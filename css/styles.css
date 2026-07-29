@@ -273,6 +273,24 @@ ul{ padding:0; margin:0; list-style:none; }
 }
 .nosotros__badge img{ border-radius:50%; }
 
+.nosotros__promesa{
+  background: rgba(251,246,236,.06); border: 1px solid rgba(251,246,236,.25);
+  border-radius: var(--radius); padding: 24px 22px; align-self: stretch;
+  display:flex; flex-direction:column; justify-content:center;
+}
+.nosotros__promesa h3{
+  color: var(--gold-light); font-size:.92rem; text-transform:uppercase;
+  letter-spacing:.04em; margin-bottom: .9em; text-align:center;
+}
+.nosotros__promesa .nosotros__valores{
+  display:flex; flex-direction:column; gap: .65rem; margin:0;
+}
+.nosotros__promesa .nosotros__valores li{
+  display:flex; align-items:flex-start; gap:.55em;
+  font-size:.86rem; color: rgba(251,246,236,.88); text-align:left; line-height:1.4;
+}
+.nosotros__promesa .nosotros__valores span{ flex-shrink:0; }
+
 /* ===== CATALOGO ===== */
 .catalogo__grid{ display:grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
 .cat-card{
@@ -462,6 +480,12 @@ body.modal-open{ overflow: hidden; }
 
 /* ===== FORM (sección contacto detallada) ===== */
 .contacto{ display:grid; grid-template-columns: .85fr 1.15fr; gap: 44px; align-items:flex-start; }
+.contacto__mapa{
+  border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow); border: 1px solid rgba(184,134,47,.15);
+  margin-top: 4px;
+}
+.contacto__mapa iframe{ display:block; }
 .form{ background:#fff; border-radius: var(--radius); padding: 26px; box-shadow: var(--shadow); }
 .form__row{ margin-bottom: 14px; display:flex; flex-direction:column; gap:5px; }
 .form__row--split{ flex-direction:row; gap: 16px; }
@@ -494,6 +518,7 @@ body.modal-open{ overflow: hidden; }
   .testimonios__grid{ grid-template-columns: 1fr; }
   .insta__ph{ flex-basis: calc((100% - 2*10px)/3); }
   .cta-footer{ grid-template-columns: 1fr; text-align:center; }
+  .cta-footer__item{ flex-direction:column; align-items:center; text-align:center; gap:.25em; }
   .cta-footer__badge{ order:-1; }
   .contacto{ grid-template-columns: 1fr; }
   .nav__links{

@@ -42,16 +42,18 @@ document.addEventListener("DOMContentLoaded", () => {
   // ---- Año dinámico en el footer ----
   document.getElementById("year").textContent = new Date().getFullYear();
 
+  // URL base de tu backend local (ver carpeta backend/). Solo funciona
+  // mientras tengas ese servidor corriendo con "npm start" en otra terminal.
+  const API_BASE = "http://localhost:3000";
+
   // ---- Contador de visitas ----
-  // Usa CountAPI (gratis, sin backend propio): cada carga de página suma 1
-  // al contador guardado bajo el namespace/key que elijas. Si más adelante
-  // armas tu propio backend con Postgres, puedes reemplazar esto por una
-  // llamada a tu propio endpoint (ej: POST /api/visitas).
+  // Ahora usa tu propio backend + Postgres (tabla "visitas"), en vez del
+  // servicio gratuito CountAPI, que no era confiable.
   const visitCountEl = document.getElementById("visitCount");
-  fetch("https://api.countapi.xyz/hit/antojitosdulces-la/visitas-web")
+  fetch(`${API_BASE}/api/visitas/hit`, { method: "POST" })
     .then((res) => res.json())
     .then((data) => {
-      visitCountEl.textContent = data.value.toLocaleString("es-CL");
+      visitCountEl.textContent = data.total.toLocaleString("es-CL");
     })
     .catch(() => {
       visitCountEl.textContent = "—";
@@ -160,9 +162,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("cotizacionForm");
   const status = document.getElementById("formStatus");
 
-  // URL de tu backend local (ver carpeta backend/). Solo funciona mientras
-  // tengas ese servidor corriendo con "npm start" en otra terminal.
-  const BACKEND_URL = "http://localhost:3000/api/cotizaciones";
+  // URL de tu backend local para guardar cotizaciones (ver carpeta backend/).
+  const BACKEND_URL = `${API_BASE}/api/cotizaciones`;
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
