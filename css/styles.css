@@ -159,7 +159,7 @@ ul{ padding:0; margin:0; list-style:none; }
   left: 50%;              /* Lo movemos al centro de la pantalla */
   top: 50%;               /* Lo alineamos verticalmente */
   transform: translate(-50%, -40%); /* Centrado matemático perfecto (ajusta el -40% para subirlo o bajarlo) */
-  z-index: 10000px !important;
+  z-index: 10 !important;
 } 
   
 
@@ -542,7 +542,16 @@ body.modal-open{ overflow: hidden; }
   .cta-footer__badge{ order:-1; }
   .contacto{ grid-template-columns: 1fr; }
   .nav__inner{ flex-wrap: wrap; }
-  .nav__logo-badge{ order: 1; }
+  .nav__logo-badge{
+    order: 1;
+    position: static;              /* ya no flota: en mobile no hay espacio para eso */
+    left: auto; top: auto; transform: none;
+    width: 64px; height: 64px;     /* tamaño razonable para el header en celular */
+  }
+  .nav__logo-badge img{
+    position: static; transform: none;
+    width: 100%; height: 100%;
+  }
   .nav__burger{ order: 2; }
   #navLinksLeft{ order: 3; }
   #navLinksRight{ order: 4; }
