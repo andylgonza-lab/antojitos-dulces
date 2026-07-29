@@ -53,7 +53,7 @@ ul{ padding:0; margin:0; list-style:none; }
 .section__inner{ max-width: var(--container); margin:0 auto; }
 .section--cream{ background: var(--cream); }
 .section--olive{ background: var(--olive); }
-.section--soft{ background: var(--cream-soft); }
+.section--soft{ background: var(--white); }
 
 .eyebrow{
   font-family: var(--font-script);
