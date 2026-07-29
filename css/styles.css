@@ -546,7 +546,7 @@ body.modal-open{ overflow: hidden; }
     order: 1;
     position: static;              /* ya no flota: en mobile no hay espacio para eso */
     left: auto; top: auto; transform: none;
-    width: 64px; height: 64px;     /* tamaño razonable para el header en celular */
+    width: 84px; height: 84px;     /* más grande y visible en celular */
   }
   .nav__logo-badge img{
     position: static; transform: none;

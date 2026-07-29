@@ -45,7 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // URL base de tu backend local (ver carpeta backend/). Solo funciona
   // mientras tengas ese servidor corriendo con "npm start" en otra terminal.
   const API_BASE = "http://localhost:3000";
-  
 
   // ---- Contador de visitas ----
   // Ahora usa tu propio backend + Postgres (tabla "visitas"), en vez del
