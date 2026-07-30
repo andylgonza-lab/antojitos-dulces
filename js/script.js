@@ -132,6 +132,45 @@ document.addEventListener("DOMContentLoaded", () => {
     instaGrid.addEventListener(evento, iniciarAutoAvance);
   });
 
+  // ---- Botón "volver arriba" ----
+  const backToTop = document.getElementById("backToTop");
+  window.addEventListener("scroll", () => {
+    backToTop.classList.toggle("is-visible", window.scrollY > 500);
+  });
+  backToTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // ---- Sección activa en el navbar (resalta dónde estás mientras haces scroll) ----
+  const navLinksTodos = document.querySelectorAll('.nav__links a[href^="#"]');
+  const seccionesObservadas = [];
+
+  navLinksTodos.forEach((link) => {
+    const id = link.getAttribute("href").slice(1);
+    // "Inicio" apunta a #top (el header), pero lo que nos interesa
+    // detectar es el hero de más abajo, no el header que siempre está fijo.
+    const seccion = id === "top" ? document.getElementById("hero") : document.getElementById(id);
+    if (seccion) seccionesObservadas.push({ id, link, seccion });
+  });
+
+  function marcarSeccionActiva(idVisible) {
+    navLinksTodos.forEach((link) => link.classList.remove("is-active"));
+    const activa = seccionesObservadas.find((s) => s.seccion.id === idVisible);
+    if (activa) activa.link.classList.add("is-active");
+  }
+
+  if ("IntersectionObserver" in window && seccionesObservadas.length) {
+    const scrollSpyObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) marcarSeccionActiva(entry.target.id);
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 } // detecta cerca del centro de la pantalla
+    );
+    seccionesObservadas.forEach(({ seccion }) => scrollSpyObserver.observe(seccion));
+  }
+
   // ---- Modal de precios ----
   const preciosModal = document.getElementById("preciosModal");
   const preciosTrigger = document.getElementById("preciosTrigger");

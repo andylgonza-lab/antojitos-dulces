@@ -470,6 +470,20 @@ body.modal-open{ overflow: hidden; }
   overflow: visible !important;
  }
 
+/* ===== BOTÓN VOLVER ARRIBA ===== */
+.back-to-top{
+  position: fixed; right: 18px; bottom: 18px; z-index: 150;
+  width: 42px; height: 42px; border-radius: 50%; border: none; cursor: pointer;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  color: #2B1E10; display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--shadow);
+  opacity: 0; visibility: hidden; transform: translateY(10px);
+  transition: opacity .25s ease, transform .25s ease, visibility .25s, box-shadow .2s ease;
+}
+.back-to-top.is-visible{ opacity: 1; visibility: visible; transform: none; }
+.back-to-top:hover{ transform: translateY(-3px); box-shadow: 0 14px 28px rgba(140,100,32,.28); }
+.back-to-top svg{ width: 18px; height: 18px; }
+
 /* ===== BOTTOM BAR ===== */
 .bottombar{ background: var(--olive-dark); color: rgba(251,246,236,.7); font-size:.76rem; }
 .bottombar__inner{
