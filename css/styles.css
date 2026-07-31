@@ -388,6 +388,22 @@ body.modal-open{ overflow: hidden; }
 .precios__na{ color: var(--brown-soft) !important; font-style: italic; font-weight: 600 !important; opacity: .65; }
 .precios__nota{ text-align: center; font-size: .85rem; color: var(--brown-soft); margin-top: 1.6rem; max-width: 560px; margin-left: auto; margin-right: auto; }
 
+/* ===== SABORES (catálogo interactivo) ===== */
+.sabores__grid{
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+}
+.sabor-card{
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  background: #fff; border: 1px solid rgba(184,134,47,.15);
+  border-radius: var(--radius-sm); padding: 20px 12px;
+  cursor: pointer; text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.sabor-card:hover{ transform: translateY(-3px); box-shadow: 0 14px 28px rgba(140,100,32,.22); }
+.sabor-card__icon{ font-size: 1.6rem; }
+.sabor-card__nombre{ font-size: .82rem; font-weight: 700; color: var(--brown); line-height: 1.25; }
+
 /* ===== FEATURES BAR ===== */
 .features{ display:grid; grid-template-columns: repeat(4, 1fr); }
 .feature{
@@ -547,6 +563,7 @@ body.modal-open{ overflow: hidden; }
   .nosotros__collage{ order:-1; }
   .nosotros__valores{ align-items:center; }
   .catalogo__grid{ grid-template-columns: repeat(2, 1fr); }
+  .sabores__grid{ grid-template-columns: repeat(3, 1fr); }
   .features{ grid-template-columns: repeat(2, 1fr); }
   .feature{ border-bottom: 1px solid rgba(251,246,236,.14); }
   .testimonios__grid{ grid-template-columns: 1fr; }
@@ -584,6 +601,7 @@ body.modal-open{ overflow: hidden; }
 @media (max-width: 600px){
   .topbar__inner span:first-child{ display:none; }
   .catalogo__grid{ grid-template-columns: 1fr 1fr; }
+  .sabores__grid{ grid-template-columns: repeat(2, 1fr); }
   .insta__ph{ flex-basis: calc((100% - 1*8px)/2); }
   .form__row--split{ flex-direction:column; }
 }

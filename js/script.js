@@ -171,6 +171,82 @@ document.addEventListener("DOMContentLoaded", () => {
     seccionesObservadas.forEach(({ seccion }) => scrollSpyObserver.observe(seccion));
   }
 
+  // ---- Catálogo interactivo de sabores ----
+  // NOTA: estas descripciones son un borrador generado según el nombre de
+  // cada torta — revísalas y corrígelas si algo no calza con tu receta real.
+  const sabores = [
+    { nombre: "Torta Yogurth", icono: "🍰", desc: "Bizcocho suave de yogurt, húmedo y liviano, con un sabor fresco y ligeramente ácido. Ideal para quienes prefieren algo menos dulce." },
+    { nombre: "Manjar Platano", icono: "🍌", desc: "Bizcocho relleno de manjar casero y plátano, una combinación clásica y cremosa que nunca falla." },
+    { nombre: "Manjar Mermelada", icono: "🍓", desc: "Bizcocho relleno de manjar y mermelada, con un contraste dulce y afrutado en cada capa." },
+    { nombre: "Manjar Crema", icono: "🍮", desc: "Bizcocho relleno de manjar casero y crema chantilly, suave y equilibrada en dulzor." },
+    { nombre: "Piña crema", icono: "🍍", desc: "Bizcocho relleno de piña y crema chantilly, fresca y liviana — perfecta para el verano." },
+    { nombre: "Piña manjar", icono: "🍍", desc: "Bizcocho relleno de piña y manjar casero, con un balance entre lo ácido de la fruta y lo dulce del manjar." },
+    { nombre: "Durazno Crema", icono: "🍑", desc: "Bizcocho relleno de durazno y crema chantilly, suave y frutal." },
+    { nombre: "Durazno manjar", icono: "🍑", desc: "Bizcocho relleno de durazno y manjar casero, una combinación dulce y jugosa." },
+    { nombre: "Torta lúcuma manjar", icono: "🟠", desc: "Bizcocho relleno de lúcuma y manjar casero, con el sabor característico de esta fruta chilena." },
+    { nombre: "Torta Frambuesa-crema", icono: "🍇", desc: "Bizcocho relleno de frambuesa y crema chantilly, con un toque ácido que equilibra la dulzura." },
+    { nombre: "Torta Mocca", icono: "☕", desc: "Bizcocho de café con relleno cremoso de moka — para los amantes del café." },
+    { nombre: "Torta Amor (bizcocho)", icono: "❤️", desc: "Nuestra clásica torta del amor, en versión bizcocho: suave, delicada y perfecta para ocasiones especiales." },
+    { nombre: "Tres Leches", icono: "🥛", desc: "El clásico tres leches: bizcocho empapado en una mezcla de tres leches, coronado con crema chantilly." },
+    { nombre: "Manjar Nuez", icono: "🌰", desc: "Bizcocho relleno de manjar casero y nueces, con textura crocante y sabor intenso." },
+    { nombre: "Selva Negra", icono: "🍒", desc: "Bizcocho de chocolate con cerezas y crema chantilly — la clásica Selva Negra." },
+    { nombre: "Torta chocolatosa", icono: "🍫", desc: "Para los amantes del chocolate: bizcocho y relleno bien chocolatosos, intensos y generosos." },
+    { nombre: "Torta amor (hojarasca)", icono: "💛", desc: "Nuestra torta del amor en versión hojarasca: capas crocantes con manjar casero entre medio." },
+    { nombre: "Torta Celestial", icono: "✨", desc: "Capas alternadas de bizcocho y manjar casero, con un toque especial que la hace única." },
+  ];
+
+  const saboresGrid = document.getElementById("saboresGrid");
+  sabores.forEach((sabor) => {
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = "sabor-card";
+    card.innerHTML = `
+      <span class="sabor-card__icon">${sabor.icono}</span>
+      <span class="sabor-card__nombre">${sabor.nombre}</span>
+    `;
+    card.addEventListener("click", () => abrirSaborModal(sabor));
+    saboresGrid.appendChild(card);
+  });
+
+  const saborModal = document.getElementById("saborModal");
+  const saborOverlay = document.getElementById("saborOverlay");
+  const saborClose = document.getElementById("saborClose");
+  const saborIcono = document.getElementById("saborIcono");
+  const saborTitle = document.getElementById("saborTitle");
+  const saborDescripcion = document.getElementById("saborDescripcion");
+  const saborCotizar = document.getElementById("saborCotizar");
+
+  function abrirSaborModal(sabor) {
+    saborIcono.textContent = sabor.icono;
+    saborTitle.textContent = sabor.nombre;
+    saborDescripcion.textContent = sabor.desc;
+
+    // Si el nombre calza con una opción del selector de tortas, la deja
+    // pre-seleccionada para cuando la persona vaya a cotizar.
+    const selectTorta = document.getElementById("torta");
+    if (selectTorta) {
+      const coincide = Array.from(selectTorta.options).some(
+        (op) => op.value === sabor.nombre
+      );
+      if (coincide) selectTorta.value = sabor.nombre;
+    }
+
+    saborModal.classList.add("is-open");
+    saborModal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+  }
+  function cerrarSaborModal() {
+    saborModal.classList.remove("is-open");
+    saborModal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+  }
+  saborOverlay.addEventListener("click", cerrarSaborModal);
+  saborClose.addEventListener("click", cerrarSaborModal);
+  saborCotizar.addEventListener("click", cerrarSaborModal);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") cerrarSaborModal();
+  });
+
   // ---- Modal de precios ----
   const preciosModal = document.getElementById("preciosModal");
   const preciosTrigger = document.getElementById("preciosTrigger");
