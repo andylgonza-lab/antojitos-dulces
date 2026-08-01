@@ -23,6 +23,7 @@ app.post("/api/cotizaciones", async (req, res) => {
     poblacion,
     evento,
     fecha,
+    hora,
     personas,
     torta,
     mensaje,
@@ -48,12 +49,13 @@ app.post("/api/cotizaciones", async (req, res) => {
 
     await client.query(
       `INSERT INTO cotizaciones
-        (cliente_id, tipo_evento, fecha_evento, cantidad_personas, tipo_torta, mensaje)
-       VALUES ($1, $2, $3, $4, $5, $6)`,
+        (cliente_id, tipo_evento, fecha_evento, hora_entrega, cantidad_personas, tipo_torta, mensaje)
+       VALUES ($1, $2, $3, $4, $5, $6, $7)`,
       [
         clienteId,
         evento || null,
         fecha || null,
+        hora || null,
         personas || null,
         torta || null,
         mensaje || null,
@@ -80,7 +82,7 @@ app.get("/api/cotizaciones", async (req, res) => {
       SELECT
         co.id,
         cl.nombre, cl.apellido, cl.telefono, cl.direccion, cl.poblacion,
-        co.tipo_evento, co.fecha_evento, co.cantidad_personas,
+        co.tipo_evento, co.fecha_evento, co.hora_entrega, co.cantidad_personas,
         co.tipo_torta, co.mensaje, co.creado_en
       FROM cotizaciones co
       JOIN clientes cl ON cl.id = co.cliente_id
