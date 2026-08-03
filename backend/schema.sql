@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS cotizaciones (
   cliente_id         INTEGER NOT NULL REFERENCES clientes(id) ON DELETE CASCADE,
   tipo_evento        TEXT,
   fecha_evento       DATE,
+  hora_entrega       TIME,
   cantidad_personas  TEXT,       -- "15 personas", "20 personas", etc.
   tipo_torta         TEXT,
   mensaje            TEXT,

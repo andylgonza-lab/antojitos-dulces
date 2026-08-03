@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // URL base de tu backend local (ver carpeta backend/). Solo funciona
   // mientras tengas ese servidor corriendo con "npm start" en otra terminal.
-  const API_BASE = "http://localhost:3000";
+  const API_BASE = "https://api-antojitosdulces.codingbase.cl";
 
   // ---- Contador de visitas ----
   // Ahora usa tu propio backend + Postgres (tabla "visitas"), en vez del
@@ -193,9 +193,6 @@ document.addEventListener("DOMContentLoaded", () => {
     { nombre: "Torta chocolatosa", icono: "🍫", desc: "Bizcocho de brownie relleno con ganache de chocolate y cubierto en ganache. Para los amantes del chocolate intenso, sin límites." },
     { nombre: "Torta amor (hojarasca)", icono: "💛", desc: "Capas de hojarasca crocante con manjar casero, crema pastelera, mermelada y frambuesas naturales con crema. Nuestra torta del amor en versión crujiente y delicada." },
     { nombre: "Torta Celestial", icono: "✨", desc: "Bizcocho de chocolate y de vainilla, alternados con discos de merengue y hojarasca, rellenos de mermelada, manjar casero, crema pastelera y frambuesas con crema. Una combinación única de texturas, para algo realmente especial." },
-    { nombre: "Torta Panqueque de Naranja", icono: "🥞", desc: "Próximamente." },
-    { nombre: "Torta Panqueque de Chocolate", icono: "🥞", desc: "Próximamente." },
-    { nombre: "Torta Panqueque de Nuez", icono: "🥞", desc: "Próximamente." },
   ];
 
   const saboresGrid = document.getElementById("saboresGrid");

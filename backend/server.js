@@ -10,7 +10,17 @@ const cors = require("cors");
 const pool = require("./db");
 
 const app = express();
-app.use(cors()); // permite que la página (otro puerto) le hable a este servidor
+
+// Dominios que pueden hablarle a este backend
+const allowedOrigins = [
+  "https://andylgonza-lab.github.io",
+  "https://antojitos-dulces-la.netlify.app",
+  "https://antojitosdulces.codingbase.cl",
+  "http://localhost:5500", // Live Server, por si lo sigues usando en local
+  "http://127.0.0.1:5500",
+];
+app.use(cors({ origin: allowedOrigins }));
+
 app.use(express.json());
 
 // ---- Crear cliente + cotización ----
