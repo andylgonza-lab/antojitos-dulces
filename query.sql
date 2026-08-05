@@ -1,0 +1,1 @@
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO codingba_antojitos_user;

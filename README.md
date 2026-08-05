@@ -1,111 +1,78 @@
-# Antojitos Dulces — Backend (Node + Express + PostgreSQL)
+# Antojitos Dulces
 
-Este servidor recibe el formulario de cotización de la página y guarda al **cliente**
-y a la **cotización** en PostgreSQL, en dos tablas relacionadas.
+Landing page + backend para **Antojitos Dulces**, pastelería en Los Álamos, Chile.
 
-## 1. Instalar dependencias
+- 📷 Instagram: [@antojitos_dulces_la](https://www.instagram.com/antojitos_dulces_la/)
+- 💬 WhatsApp: +56 9 8407 2985
+- 📍 Toqui Araucano #135, esquina Simón Carballo, Los Álamos, Chile
 
-Desde la carpeta `backend/`:
+## 🌐 Sitios publicados
 
-```bash
-cd backend
-npm install
-```
+| Sitio | URL | Estado |
+|---|---|---|
+| **Principal (Bluehosting)** | https://antojitosdulces.codingbase.cl | ✅ Frontend + backend + BD, todo funcionando |
+| Backend (Bluehosting) | https://api-antojitosdulces.codingbase.cl | ✅ API propia, Postgres en el mismo hosting |
+| GitHub Pages (respaldo) | https://andylgonza-lab.github.io/antojitos-dulces/ | ⚠️ Conectado a Supabase (backend anterior) |
+| Netlify (respaldo) | https://antojitos-dulces-la.netlify.app/ | ⚠️ Conectado a Supabase (backend anterior) |
 
-## 2. Configurar la conexión a la base de datos
-
-```bash
-cp .env.example .env
-```
-
-Abre `.env` y reemplaza los valores por los de tu PostgreSQL local (usuario, password, etc).
-Si instalaste Postgres con la configuración por defecto, probablemente `DB_USER=postgres`
-y `DB_HOST=localhost` ya están correctos — solo cambia `DB_PASSWORD`.
-
-## 3. Crear la base de datos y las tablas
-
-Desde la terminal (con Postgres corriendo):
-
-```bash
-# Crea la base de datos (solo la primera vez)
-createdb antojitos_dulces
-
-# Crea las tablas clientes y cotizaciones
-psql -d antojitos_dulces -f schema.sql
-```
-
-> Si `createdb` o `psql` no se reconocen como comando, es porque la carpeta `bin` de
-> PostgreSQL no está en el PATH de tu sistema. Alternativa: abre **pgAdmin**, crea ahí
-> la base de datos `antojitos_dulces`, y pega el contenido de `schema.sql` en su
-> "Query Tool" para crear las tablas.
-
-## 4. Levantar el servidor
-
-```bash
-npm start
-```
-
-Si todo está bien configurado, verás en la terminal:
+## 📁 Estructura del proyecto
 
 ```
-✅ Backend de Antojitos Dulces escuchando en http://localhost:3000
+Antojitos-dulces/
+├── index.html               → página principal
+├── css/styles.css
+├── js/script.js
+├── assets/                  → logo, fotos
+├── README.md                → este archivo
+├── ESTADO-DEL-PROYECTO.md   → bitácora para retomar el trabajo en cualquier momento
+└── backend/
+    ├── server.js             → servidor Express (endpoints /api/...)
+    ├── db.js                 → conexión a PostgreSQL
+    ├── schema.sql            → estructura de las tablas
+    ├── package.json
+    └── .env                  → credenciales (NUNCA subir a git)
 ```
 
-Déjalo corriendo en esa terminal mientras usas la página (necesitas **dos** cosas abiertas
-a la vez: Live Server para la página, y este backend para guardar los datos).
+## ▶️ Cómo trabajar en el proyecto (en local)
 
-## 5. Probar que funciona
+1. Abre la carpeta en VS Code.
+2. **Frontend**: clic derecho en `index.html` → *Open with Live Server*.
+3. **Backend**: en una terminal aparte, `cd backend && npm start`.
 
-Completa y envía el formulario de cotización en la página normalmente. Luego, abre esto
-en el navegador para ver todo lo que se ha guardado:
+## 🔧 Flujo de trabajo para hacer cambios (sin romper el sitio publicado)
 
+**Regla de oro: nunca se edita directo en producción** (ni en el Administrador de archivos de cPanel, ni en el sitio en vivo). Siempre local → probado → recién ahí se sube.
+
+### Paso a paso
+
+1. **Edita en tu carpeta local**, nunca en cPanel directamente.
+2. **Prueba en local antes de subir nada**:
+   - Frontend con Live Server
+   - Backend con `npm start` (revisa que no tire errores en la terminal)
+3. Si todo funciona bien y no rompe nada, recién ahí subes **solo los archivos que cambiaste**:
+
+   | Qué cambiaste | Dónde subirlo (Administrador de archivos de cPanel) | Paso extra |
+   |---|---|---|
+   | `index.html`, `css/`, `js/`, `assets/` | Carpeta `antojitosdulces.codingbase.cl` | Ninguno — se actualiza solo |
+   | `server.js`, `db.js`, `package.json` | Carpeta `api-antojitosdulces.codingbase.cl` | **Ir a "Setup Node.js App" → "REINICIAR"** — si no reinicias, el servidor sigue usando el código viejo aunque el archivo ya esté actualizado |
+
+4. Si cambiaste el backend, prueba de inmediato abriendo `https://api-antojitosdulces.codingbase.cl/api/cotizaciones` en el navegador — debe responder `[]` o una lista, no un error.
+5. **Buen hábito**: haz `git commit` de tus cambios en local aunque no los subas a GitHub cada vez — así siempre tienes una versión anterior "buena" a la que volver si algo sale mal en producción.
+
+### Si algo se rompe después de subir un cambio
+
+Vuelve a subir la versión anterior del archivo (la que tenías en tu `git log` o en tu última copia local funcionando) al mismo lugar, y si era el backend, reinicia de nuevo en "Setup Node.js App". El sitio vuelve a la normalidad en el momento.
+
+## 🗄️ Base de datos
+
+PostgreSQL en el mismo hosting (Bluehosting). Ver `backend/schema.sql` para la estructura completa (tablas `clientes`, `cotizaciones`, `visitas`).
+
+⚠️ Nota importante de PostgreSQL: si alguna vez agregas una tabla nueva con una columna `SERIAL`, después de crearla hay que correr esto en phpPgAdmin para que el usuario de la app pueda insertar filas:
+```sql
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO codingba_antojitos_user;
 ```
-http://localhost:3000/api/cotizaciones
-```
+("Sincronizar permisos" de cPanel no cubre esto automáticamente.)
 
-Vas a ver una lista en formato JSON con cada cotización y los datos del cliente asociado.
+## 📄 Más detalles
 
-## Estructura de las tablas
-
-**clientes**
-| Columna    | Tipo      | Notas                        |
-|------------|-----------|-------------------------------|
-| id         | SERIAL    | Autogenerado                  |
-| nombre     | TEXT      | Obligatorio                   |
-| apellido   | TEXT      | Obligatorio                   |
-| telefono   | TEXT      | Obligatorio                   |
-| direccion  | TEXT      | Opcional                      |
-| poblacion  | TEXT      | Opcional                      |
-| creado_en  | TIMESTAMP | Se llena solo                 |
-
-**cotizaciones**
-| Columna            | Tipo      | Notas                              |
-|---------------------|-----------|-------------------------------------|
-| id                  | SERIAL    | Autogenerado                        |
-| cliente_id          | INTEGER   | Referencia a `clientes.id`          |
-| tipo_evento         | TEXT      |                                      |
-| fecha_evento        | DATE      |                                      |
-| cantidad_personas   | TEXT      | "15 personas", "20 personas", etc.  |
-| tipo_torta          | TEXT      |                                      |
-| mensaje             | TEXT      |                                      |
-| creado_en           | TIMESTAMP | Se llena solo                       |
-
-## ¿Por qué dos tablas y no una sola?
-
-Porque un mismo cliente puede pedir varias cotizaciones a lo largo del tiempo. Separarlas
-evita repetir su nombre/teléfono/dirección cada vez, y te permite después hacer consultas
-como "¿cuántas cotizaciones ha pedido esta persona?" o "¿cuáles son mis clientes más
-frecuentes?" — cosas que con una sola tabla mezclada serían más difíciles.
-
-## Notas importantes
-
-- Este backend corre **solo en tu computador** (`localhost`) por ahora. La página web en
-  `js/script.js` intenta guardar cada cotización acá, pero si el backend no está corriendo
-  (por ejemplo, cuando publiques la página en internet más adelante), el formulario sigue
-  funcionando igual gracias a Formspree — el guardado en Postgres simplemente no ocurre
-  silenciosamente, sin romper nada.
-- El archivo `.env` **nunca** debe subirse a GitHub — ya está en `.gitignore` para evitarlo,
-  porque contiene la contraseña de tu base de datos.
-- Cuando quieras publicar la página con el backend funcionando de verdad para cualquier
-  visitante (no solo tú en tu computador), vas a necesitar "hostear" este backend y la base
-  de datos en un servicio como Railway, Render o Supabase — eso lo podemos ver más adelante.
+Para el historial completo de decisiones, funcionalidades ya construidas y lo pendiente, ver **`ESTADO-DEL-PROYECTO.md`** — súbelo al iniciar un chat nuevo con Claude para retomar el contexto sin tener que explicar todo de nuevo.

@@ -507,6 +507,24 @@ body.modal-open{ overflow: hidden; }
   display:flex; justify-content:space-between; align-items:center; gap: 16px; flex-wrap:wrap;
 }
 .bottombar__visits{ color: var(--gold-light); font-weight:600; }
+.bottombar__legal{
+  justify-content:center; padding-top:0; margin-top:-6px; padding-bottom:14px;
+  gap: 8px; flex-wrap:wrap;
+}
+.bottombar__legal-link{
+  background:none; border:none; color: rgba(251,246,236,.6); font-size:.74rem;
+  cursor:pointer; padding:2px; text-decoration:underline; text-underline-offset:2px;
+}
+.bottombar__legal-link:hover{ color: var(--gold-light); }
+.bottombar__legal-dot{ color: rgba(251,246,236,.35); font-size:.74rem; }
+
+.legal__contenido{ font-size:.88rem; line-height:1.7; color: var(--brown-soft); }
+.legal__contenido h3{ font-family: var(--font-display); font-size:1rem; color: var(--brown); margin: 1.2em 0 .4em; }
+.legal__contenido h3:first-child{ margin-top:0; }
+.legal__contenido p{ margin: 0 0 .9em; color: var(--brown-soft); }
+.legal__contenido ul{ margin: 0 0 .9em; padding-left: 1.2em; list-style: disc; }
+.legal__contenido li{ margin-bottom:.4em; }
+.legal__contenido strong{ color: var(--brown); }
 
 /* ===== FORM (sección contacto detallada) ===== */
 .contacto{ display:grid; grid-template-columns: .85fr 1.15fr; gap: 44px; align-items:flex-start; }

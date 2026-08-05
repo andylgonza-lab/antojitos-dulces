@@ -30,14 +30,19 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ---- Dropdown "Catálogo" en móvil (tap para abrir/cerrar) ----
+  // Nota: se hizo defensivo porque el submenú desplegable de Catálogo
+  // fue quitado del HTML — sin este chequeo, el script se rompía acá
+  // y todo lo que viene después dejaba de funcionar.
   const dropdown = document.querySelector(".nav__dropdown");
-  const dropdownToggle = dropdown.querySelector("a");
-  dropdownToggle.addEventListener("click", (e) => {
-    if (window.innerWidth <= 980) {
-      e.preventDefault();
-      dropdown.classList.toggle("is-open");
-    }
-  });
+  if (dropdown) {
+    const dropdownToggle = dropdown.querySelector("a");
+    dropdownToggle.addEventListener("click", (e) => {
+      if (window.innerWidth <= 980) {
+        e.preventDefault();
+        dropdown.classList.toggle("is-open");
+      }
+    });
+  }
 
   // ---- Año dinámico en el footer ----
   document.getElementById("year").textContent = new Date().getFullYear();
@@ -193,6 +198,9 @@ document.addEventListener("DOMContentLoaded", () => {
     { nombre: "Torta chocolatosa", icono: "🍫", desc: "Bizcocho de brownie relleno con ganache de chocolate y cubierto en ganache. Para los amantes del chocolate intenso, sin límites." },
     { nombre: "Torta amor (hojarasca)", icono: "💛", desc: "Capas de hojarasca crocante con manjar casero, crema pastelera, mermelada y frambuesas naturales con crema. Nuestra torta del amor en versión crujiente y delicada." },
     { nombre: "Torta Celestial", icono: "✨", desc: "Bizcocho de chocolate y de vainilla, alternados con discos de merengue y hojarasca, rellenos de mermelada, manjar casero, crema pastelera y frambuesas con crema. Una combinación única de texturas, para algo realmente especial." },
+    { nombre: "Torta Panqueque de Naranja", icono: "🍊", desc: "Capas de panqueque relleno de manjar y un suave toque de naranja. Fresca, aromática y distinta a las demás." },
+    { nombre: "Torta Panqueque de Chocolate", icono: "🍫", desc: "Capas de panqueque de chocolate rellenas de manjar. Para quienes quieren el sabor de siempre en un formato distinto." },
+    { nombre: "Torta Panqueque de Nuez", icono: "🌰", desc: "Capas de panqueque relleno de manjar y nueces, con esa textura crocante que las hace tan ricas." },
   ];
 
   const saboresGrid = document.getElementById("saboresGrid");
@@ -245,6 +253,101 @@ document.addEventListener("DOMContentLoaded", () => {
   saborCotizar.addEventListener("click", cerrarSaborModal);
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") cerrarSaborModal();
+  });
+
+  // ---- Documentos legales (Política de Privacidad, Términos, Aviso Legal) ----
+  // NOTA: esto es un borrador orientado a lo que el sitio realmente hace,
+  // no es asesoría legal certificada. Antes de diciembre de 2026 (entrada
+  // en vigencia de la Ley 21.719 de Protección de Datos) conviene que un
+  // abogado lo revise. Actualiza el nombre/RUT cuando formalices el negocio.
+  const legalDocs = {
+    privacidad: {
+      titulo: "Política de Privacidad",
+      html: `
+        <h3>¿Qué datos recolectamos?</h3>
+        <p>Cuando completas el formulario de cotización, guardamos: nombre, apellido, teléfono, dirección y población (si los ingresas), tipo de evento, fecha, hora de entrega o retiro, cantidad de personas, tipo de torta y el mensaje que escribas.</p>
+        <h3>¿Para qué los usamos?</h3>
+        <p>Únicamente para procesar tu solicitud de cotización y contactarte por WhatsApp o correo para coordinar tu pedido. No usamos tus datos para fines distintos a este.</p>
+        <h3>¿Dónde se guardan?</h3>
+        <p>En una base de datos propia, alojada en nuestro proveedor de hosting en Chile. Además, el formulario envía una copia a <strong>Formspree</strong>, un servicio externo que nos reenvía la solicitud por correo — ellos procesan esos datos según su propia política de privacidad.</p>
+        <h3>Servicios de terceros integrados en el sitio</h3>
+        <p>Esta página utiliza <strong>Google Maps</strong> (para mostrar nuestra ubicación) y enlaces a <strong>Instagram</strong> y <strong>WhatsApp</strong>. Estos servicios pueden recolectar datos según sus propias políticas, ajenas a nosotros.</p>
+        <h3>¿Compartimos tus datos?</h3>
+        <p>No vendemos ni compartimos tus datos con terceros distintos a los mencionados arriba (Formspree, para el envío del correo).</p>
+        <h3>Tus derechos</h3>
+        <p>Puedes pedirnos en cualquier momento acceder, corregir o eliminar tus datos, escribiéndonos por WhatsApp al +56 9 8407 2985.</p>
+        <h3>Cambios a esta política</h3>
+        <p>Podemos actualizar este documento en el futuro. Te recomendamos revisarlo de tanto en tanto.</p>
+      `,
+    },
+    terminos: {
+      titulo: "Términos y Condiciones",
+      html: `
+        <h3>Sobre este sitio</h3>
+        <p>Este sitio es informativo y funciona como herramienta para solicitar cotizaciones. No es una tienda en línea: no se procesan pagos ni compras directamente aquí.</p>
+        <h3>Sobre las cotizaciones</h3>
+        <p>Enviar el formulario <strong>no confirma un pedido</strong> — es una solicitud. La confirmación final (precio, fecha, forma de pago y entrega) se coordina directamente contigo por WhatsApp.</p>
+        <h3>Precios</h3>
+        <p>Los precios mostrados son referenciales y pueden variar según personalización, decoración o disponibilidad. Están sujetos a cambio sin previo aviso.</p>
+        <h3>Disponibilidad</h3>
+        <p>La disponibilidad de fechas y tortas depende de nuestra capacidad de producción al momento de tu solicitud.</p>
+        <h3>Uso del sitio</h3>
+        <p>Te pedimos usar el formulario con datos reales y no enviar información falsa, spam, ni contenido ofensivo.</p>
+        <h3>Propiedad del contenido</h3>
+        <p>Las fotografías, logo, textos y diseño de este sitio son propiedad de Antojitos Dulces, salvo que se indique lo contrario. No está permitido reproducirlos sin autorización.</p>
+        <h3>Responsabilidad</h3>
+        <p>No nos hacemos responsables por atrasos o fallas causadas por terceros ajenos a nuestro control (problemas de conexión, servicios externos como Google Maps o Formspree, etc.).</p>
+        <h3>Ley aplicable</h3>
+        <p>Estos términos se rigen por las leyes de la República de Chile.</p>
+      `,
+    },
+    aviso: {
+      titulo: "Aviso Legal",
+      html: `
+        <h3>Identificación</h3>
+        <p><strong>Antojitos Dulces</strong> es un emprendimiento de repostería y coctelería operado como persona natural (aún sin RUT de empresa formalizado — este dato se actualizará al formalizar el negocio).</p>
+        <h3>Domicilio y contacto</h3>
+        <p>Toqui Araucano #135, esquina Simón Carballo, Los Álamos, Chile.<br>
+        WhatsApp: +56 9 8407 2985 — Instagram: @antojitos_dulces_la</p>
+        <h3>Objeto del sitio</h3>
+        <p>Informar sobre nuestros productos y servicios de repostería, y facilitar la solicitud de cotizaciones para eventos y celebraciones.</p>
+        <h3>Propiedad intelectual</h3>
+        <p>La marca "Antojitos Dulces", el logo, las fotografías y los textos de este sitio son propiedad de Antojitos Dulces, salvo indicación contraria.</p>
+        <h3>Enlaces e integraciones externas</h3>
+        <p>Este sitio incluye un mapa de Google Maps y enlaces a Instagram y WhatsApp — plataformas de terceros que no están bajo nuestro control y cuentan con sus propias políticas.</p>
+        <h3>Legislación aplicable</h3>
+        <p>Este aviso se rige por las leyes de la República de Chile.</p>
+      `,
+    },
+  };
+
+  const legalModal = document.getElementById("legalModal");
+  const legalOverlay = document.getElementById("legalOverlay");
+  const legalClose = document.getElementById("legalClose");
+  const legalTitle = document.getElementById("legalTitle");
+  const legalContenido = document.getElementById("legalContenido");
+
+  function abrirLegalModal(docKey) {
+    const doc = legalDocs[docKey];
+    if (!doc) return;
+    legalTitle.textContent = doc.titulo;
+    legalContenido.innerHTML = doc.html;
+    legalModal.classList.add("is-open");
+    legalModal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+  }
+  function cerrarLegalModal() {
+    legalModal.classList.remove("is-open");
+    legalModal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+  }
+  document.querySelectorAll(".bottombar__legal-link").forEach((btn) => {
+    btn.addEventListener("click", () => abrirLegalModal(btn.dataset.doc));
+  });
+  legalOverlay.addEventListener("click", cerrarLegalModal);
+  legalClose.addEventListener("click", cerrarLegalModal);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") cerrarLegalModal();
   });
 
   // ---- Modal de precios ----

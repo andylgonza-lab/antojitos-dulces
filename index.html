@@ -396,7 +396,24 @@
   <div class="bottombar__inner">
     <span>&copy; <span id="year"></span> Antojitos Dulces. Todos los derechos reservados.</span>
     <span class="bottombar__visits">👁️ <span id="visitCount">...</span> visitas</span>
-    <span>Creado por Forzax Gonzalez</span>
+    <span>Creado por Andy Gonzalez</span>
+  </div>
+  <div class="bottombar__inner bottombar__legal">
+    <button type="button" class="bottombar__legal-link" data-doc="privacidad">Política de Privacidad</button>
+    <span class="bottombar__legal-dot">·</span>
+    <button type="button" class="bottombar__legal-link" data-doc="terminos">Términos y Condiciones</button>
+    <span class="bottombar__legal-dot">·</span>
+    <button type="button" class="bottombar__legal-link" data-doc="aviso">Aviso Legal</button>
+  </div>
+</div>
+
+<!-- ===== MODAL LEGAL (reutilizable) ===== -->
+<div class="modal" id="legalModal" aria-hidden="true">
+  <div class="modal__overlay" id="legalOverlay"></div>
+  <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
+    <button class="modal__close" id="legalClose" aria-label="Cerrar">✕</button>
+    <h2 id="legalTitle" class="section__title" style="margin-bottom:1rem;"></h2>
+    <div id="legalContenido" class="legal__contenido"></div>
   </div>
 </div>
 

@@ -16,6 +16,8 @@ const allowedOrigins = [
   "https://andylgonza-lab.github.io",
   "https://antojitos-dulces-la.netlify.app",
   "https://antojitosdulces.codingbase.cl",
+  "https://antojitosdulces.cl",
+  "https://www.antojitosdulces.cl",
   "http://localhost:5500", // Live Server, por si lo sigues usando en local
   "http://127.0.0.1:5500",
 ];
