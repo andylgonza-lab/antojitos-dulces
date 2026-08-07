@@ -69,16 +69,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const instaGrid = document.getElementById("instaGrid");
 
   const fotos = [
-    "ig-1.png",
-    "ig-2.png",
-    "ig-3.png",
-    "ig-4.png",
-    "ig-5.png",
-    "ig-6.png",
-    "ig-7.png",
-    "ig-8.png",
-    "ig-9.png",
-    "ig-10.png",
+    "ig-1.webp",
+    "ig-2.webp",
+    "ig-3.webp",
+    "ig-4.webp",
+    "ig-5.webp",
+    "ig-6.webp",
+    "ig-7.webp",
+    "ig-8.webp",
+    "ig-9.webp",
+    "ig-10.webp",
   ];
   fotos.forEach((nombre) => {
     const div = document.createElement("div");
@@ -181,23 +181,23 @@ document.addEventListener("DOMContentLoaded", () => {
   // cada torta — revísalas y corrígelas si algo no calza con tu receta real.
   const sabores = [
     { nombre: "Torta Yogurth", icono: "🍰", desc: "Bizcocho de vainilla con un suave toque de yogurt, crema chantilly y una fina capa de jalea. Delicada, fresca y liviana — ideal si buscas algo no tan dulce." },
-    { nombre: "Manjar Platano", icono: "🍌", desc: "Cuatro capas de bizcocho de vainilla rellenas con manjar casero, plátano natural y una suave crema de plátano. Un clásico dulce y reconfortante." },
-    { nombre: "Manjar Mermelada", icono: "🍓", desc: "Cuatro capas de bizcocho de vainilla que combinan mermelada, una fina capa de crema y manjar casero. Dulce y con distintas texturas en cada bocado." },
-    { nombre: "Manjar Crema", icono: "🍮", desc: "Cuatro capas de bizcocho de vainilla rellenas con manjar casero y crema chantilly. Simple, cremosa y siempre un acierto seguro." },
-    { nombre: "Piña crema", icono: "🍍", desc: "Cuatro capas de bizcocho de vainilla con piña natural y crema chantilly. Fresca, liviana y perfecta para los días de calor." },
-    { nombre: "Piña manjar", icono: "🍍", desc: "Cuatro capas de bizcocho de vainilla con piña, manjar casero y una fina capa de crema. El equilibrio justo entre lo ácido de la fruta y lo dulce del manjar." },
-    { nombre: "Durazno Crema", icono: "🍑", desc: "Cuatro capas de bizcocho de vainilla con durazno y crema chantilly. Suave, frutal y delicada." },
-    { nombre: "Durazno manjar", icono: "🍑", desc: "Cuatro capas de bizcocho de vainilla con durazno, manjar casero y una fina capa de crema. Dulce y jugosa, con el sabor del durazno en cada capa." },
-    { nombre: "Torta lúcuma manjar", icono: "🟠", desc: "Cuatro capas de bizcocho de vainilla con manjar casero y crema de lúcuma. El sabor inconfundible de la lúcuma, en una torta cremosa y distinta." },
+    { nombre: "Manjar Platano", icono: "🍌", desc: "Cuatro capas de bizcocho de vainilla rellenas con manjar, plátano natural y una suave crema de plátano. Un clásico dulce y reconfortante." },
+    { nombre: "Manjar Mermelada", icono: "🍓", desc: "Cuatro capas de bizcocho de vainilla que combinan mermelada, una fina capa de crema y manjar. Dulce y con distintas texturas en cada bocado." },
+    { nombre: "Manjar Crema", icono: "🍮", desc: "Cuatro capas de bizcocho de vainilla rellenas con manjar y crema chantilly. Simple, cremosa y siempre un acierto seguro." },
+    { nombre: "Piña crema", icono: "🍍", desc: "Cuatro capas de bizcocho de vainilla rellenas con piña natural y crema chantilly. Fresca, liviana y perfecta para los días de calor." },
+    { nombre: "Piña manjar", icono: "🍍", desc: "Cuatro capas de bizcocho de vainilla rellenas con piña, manjar y una fina capa de crema. El equilibrio justo entre lo ácido de la fruta y lo dulce del manjar." },
+    { nombre: "Durazno Crema", icono: "🍑", desc: "Cuatro capas de bizcocho de vainilla rellenas con durazno y crema chantilly. Suave, frutal y delicada." },
+    { nombre: "Durazno manjar", icono: "🍑", desc: "Cuatro capas de bizcocho de vainilla rellenas con durazno, manjar y una fina capa de crema. Dulce y jugosa, con el sabor del durazno en cada capa." },
+    { nombre: "Torta lúcuma manjar", icono: "🟠", desc: "Cuatro capas de bizcocho de vainilla rellenas con manjar y crema de lúcuma. El sabor inconfundible de la lúcuma, en una torta cremosa y distinta." },
     { nombre: "Torta Frambuesa-crema", icono: "🍇", desc: "Cuatro capas de bizcocho de vainilla con frambuesas naturales y crema chantilly. Fresca y con ese toque ácido que la hace irresistible." },
-    { nombre: "Torta Mocca", icono: "☕", desc: "Cuatro capas de bizcocho de vainilla con manjar casero y crema de mocca. Para quienes aman el café en cada bocado." },
-    { nombre: "Torta Amor (bizcocho)", icono: "❤️", desc: "Cuatro capas de bizcocho de vainilla con manjar casero, crema pastelera, mermelada y frambuesas con crema. Nuestra torta más completa, pensada para ocasiones especiales." },
-    { nombre: "Tres Leches", icono: "🥛", desc: "Cuatro capas de bizcocho de vainilla remojadas en tres leches, con relleno de manjar casero y crema pastelera. El clásico de siempre, jugoso hasta el último bocado." },
-    { nombre: "Manjar Nuez", icono: "🌰", desc: "Cuatro capas de bizcocho de vainilla con nueces, manjar casero y crema. Dulce, con textura crocante y sabor intenso." },
-    { nombre: "Selva Negra", icono: "🍒", desc: "Cuatro capas de bizcocho de chocolate con mermelada, crema chantilly, chispas de chocolate y marrasquinos. La clásica Selva Negra, elegante y llena de sabor." },
+    { nombre: "Torta Mocca", icono: "☕", desc: "Cuatro capas de bizcocho de vainilla rellenos con manjar y crema de mocca. Para quienes aman el café en cada bocado." },
+    { nombre: "Torta Amor (bizcocho)", icono: "❤️", desc: "Cuatro capas de bizcocho de vainilla rellenos con manjar, crema pastelera, mermelada y frambuesas con crema. Nuestra torta más completa, pensada para ocasiones especiales." },
+    { nombre: "Tres Leches", icono: "🥛", desc: "Cuatro capas de bizcocho de vainilla remojadas en tres leches, con relleno de manjar y crema pastelera. El clásico de siempre, jugoso hasta el último bocado." },
+    { nombre: "Manjar Nuez", icono: "🌰", desc: "Cuatro capas de bizcocho de vainilla rellenos con nueces, manjar y crema. Dulce, con textura crocante y sabor intenso." },
+    { nombre: "Selva Negra", icono: "🍒", desc: "Cuatro capas de bizcocho de chocolate rellenos con mermelada, crema chantilly, chispas de chocolate y marrasquinos. La clásica Selva Negra, elegante y llena de sabor." },
     { nombre: "Torta chocolatosa", icono: "🍫", desc: "Bizcocho de brownie relleno con ganache de chocolate y cubierto en ganache. Para los amantes del chocolate intenso, sin límites." },
-    { nombre: "Torta amor (hojarasca)", icono: "💛", desc: "Capas de hojarasca crocante con manjar casero, crema pastelera, mermelada y frambuesas naturales con crema. Nuestra torta del amor en versión crujiente y delicada." },
-    { nombre: "Torta Celestial", icono: "✨", desc: "Bizcocho de chocolate y de vainilla, alternados con discos de merengue y hojarasca, rellenos de mermelada, manjar casero, crema pastelera y frambuesas con crema. Una combinación única de texturas, para algo realmente especial." },
+    { nombre: "Torta amor (hojarasca)", icono: "💛", desc: "Capas de hojarasca crocante rellenas con manjar, crema pastelera, mermelada y frambuesas naturales con crema. Nuestra torta del amor en versión crujiente y delicada." },
+    { nombre: "Torta Celestial", icono: "✨", desc: "Bizcocho de chocolate y de vainilla, alternados con discos de merengue y hojarasca, rellenos de mermelada, manjar, crema pastelera y frambuesas con crema. Una combinación única de texturas, para algo realmente especial." },
     { nombre: "Torta Panqueque de Naranja", icono: "🍊", desc: "Capas de panqueque relleno de manjar y un suave toque de naranja. Fresca, aromática y distinta a las demás." },
     { nombre: "Torta Panqueque de Chocolate", icono: "🍫", desc: "Capas de panqueque de chocolate rellenas de manjar. Para quienes quieren el sabor de siempre en un formato distinto." },
     { nombre: "Torta Panqueque de Nuez", icono: "🌰", desc: "Capas de panqueque relleno de manjar y nueces, con esa textura crocante que las hace tan ricas." },
@@ -275,7 +275,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <h3>¿Compartimos tus datos?</h3>
         <p>No vendemos ni compartimos tus datos con terceros distintos a los mencionados arriba (Formspree, para el envío del correo).</p>
         <h3>Tus derechos</h3>
-        <p>Puedes pedirnos en cualquier momento acceder, corregir o eliminar tus datos, escribiéndonos por WhatsApp al +56 9 8407 2985.</p>
+        <p>Puedes solicitar en cualquier momento acceder, corregir o eliminar tus datos, escribiéndonos por WhatsApp al +56 9 8407 2985.</p>
         <h3>Cambios a esta política</h3>
         <p>Podemos actualizar este documento en el futuro. Te recomendamos revisarlo de tanto en tanto.</p>
       `,
@@ -305,7 +305,7 @@ document.addEventListener("DOMContentLoaded", () => {
       titulo: "Aviso Legal",
       html: `
         <h3>Identificación</h3>
-        <p><strong>Antojitos Dulces</strong> es un emprendimiento de repostería y coctelería operado como persona natural (aún sin RUT de empresa formalizado — este dato se actualizará al formalizar el negocio).</p>
+        <p><strong>Antojitos Dulces</strong> es un emprendimiento de repostería y coctelería operado como persona natural (aún sin RUT de empresa formalizado — será debidamente actualizado al momento de formalizar la actividad económica).</p>
         <h3>Domicilio y contacto</h3>
         <p>Toqui Araucano #135, esquina Simón Carballo, Los Álamos, Chile.<br>
         WhatsApp: +56 9 8407 2985 — Instagram: @antojitos_dulces_la</p>
