@@ -13,9 +13,6 @@ const app = express();
 
 // Dominios que pueden hablarle a este backend
 const allowedOrigins = [
-  "https://andylgonza-lab.github.io",
-  "https://antojitos-dulces-la.netlify.app",
-  "https://antojitosdulces.codingbase.cl",
   "https://antojitosdulces.cl",
   "https://www.antojitosdulces.cl",
   "http://localhost:5500", // Live Server, por si lo sigues usando en local
