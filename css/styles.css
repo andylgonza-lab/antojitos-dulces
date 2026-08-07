@@ -299,14 +299,33 @@ ul{ padding:0; margin:0; list-style:none; }
   background-size: cover;
   background-position: center;
   box-shadow: var(--shadow);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.cat-card::before{
+  content:''; position:absolute; inset:0;
+  background: rgba(59,68,37,0); /* var(--olive-dark) transparente */
+  transition: background .3s ease;
+  pointer-events: none;
+}
+.cat-card:hover{
+  transform: translateY(-20px);
+  box-shadow: 0 14px 30px rgba(184,134,47,.35), 0 0 20px 2px var(--gold-light);
+}
+.cat-card:hover::before{
+  background: rgba(59,68,37,.18);
 }
 .cat-card__label{
   position:absolute; left:0; right:0; bottom:0; padding: 12px 8px;
   background: var(--olive);
   color:#fff; font-weight:800; font-size:.72rem; letter-spacing:.04em; text-transform:uppercase;
   text-align:center;
+  transition: background .3s ease;
 }
-.cat-card__label span{ display:block; color: var(--gold-light); font-weight:700; font-size:.68rem; }
+.cat-card:hover .cat-card__label{
+  background: var(--olive-dark);
+}
+.cat-card__label span{ display:block; color: var(--gold-light); font-weight:700; font-size:.68rem; transition: color .3s ease; }
+.cat-card:hover .cat-card__label span{ color: #fff; }
 
 /* ===== MODAL DE PRECIOS ===== */
 .modal{
