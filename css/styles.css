@@ -500,6 +500,28 @@ body.modal-open{ overflow: hidden; }
 .back-to-top:hover{ transform: translateY(-3px); box-shadow: 0 14px 28px rgba(140,100,32,.28); }
 .back-to-top svg{ width: 18px; height: 18px; }
 
+/* ===== BOTÓN FLOTANTE DE WHATSAPP ===== */
+.whatsapp-float{
+  position: fixed; left: 18px; bottom: 18px; z-index: 150;
+  width: 54px; height: 54px; border-radius: 50%;
+  background: #25D366;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 20px rgba(37,211,102,.4);
+  transition: transform .2s ease, box-shadow .2s ease;
+  animation: whatsappPulse 2.4s ease-in-out infinite;
+}
+.whatsapp-float:hover{ transform: scale(1.08); box-shadow: 0 12px 26px rgba(37,211,102,.5); }
+.whatsapp-float img{ width: 28px; height: 28px; filter: brightness(0) invert(1); }
+@keyframes whatsappPulse{
+  0%, 100%{ box-shadow: 0 8px 20px rgba(37,211,102,.4); }
+  50%{ box-shadow: 0 8px 20px rgba(37,211,102,.4), 0 0 0 8px rgba(37,211,102,.15); }
+}
+@media (max-width: 600px){
+  .whatsapp-float{ width: 48px; height: 48px; left: 14px; bottom: 14px; }
+  .whatsapp-float img{ width: 24px; height: 24px; }
+  .back-to-top{ right: 14px; bottom: 14px; }
+}
+
 /* ===== BOTTOM BAR ===== */
 .bottombar{ background: var(--olive-dark); color: rgba(251,246,236,.7); font-size:.76rem; }
 .bottombar__inner{
@@ -566,6 +588,21 @@ body.modal-open{ overflow: hidden; }
 }
 .form input:focus, .form select:focus, .form textarea:focus{ outline: none; border-color: var(--gold); }
 .form__submit{ width:100%; margin-top: 4px; }
+.form__consent{ margin-bottom: 14px; }
+.form__consent-label{
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: .82rem; color: var(--brown-soft); line-height: 1.5;
+  cursor: pointer; font-weight: 400;
+}
+.form__consent-label input[type="checkbox"]{
+  width: 17px; height: 17px; margin-top: 2px; flex-shrink: 0; accent-color: var(--gold);
+}
+.form__consent-link{
+  background:none; border:none; padding:0; margin:0;
+  color: var(--gold-deep); font-size: inherit; text-decoration: underline;
+  text-underline-offset: 2px; cursor: pointer; font-weight: 700;
+}
+.form__consent-link:hover{ color: var(--gold); }
 .form__status{ text-align:center; font-weight:700; margin: 8px 0 0; min-height: 1.1em; font-size:.82rem; color: var(--gold-deep); }
 .contacto__chip{
   display:inline-flex; align-items:center; gap:.55em; background:#fff;

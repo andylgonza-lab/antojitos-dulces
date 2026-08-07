@@ -3,14 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Antojitos Dulces | Repostería y Coctelería</title>
+<title>Antojitos Dulces | Repostería y Coctelería en Los Álamos, Chile</title>
 <meta name="description" content="Tortas y repostería artesanal en Los Álamos, Chile. Cotiza tu torta para cumpleaños, matrimonios y eventos especiales.">
+<link rel="canonical" href="https://antojitosdulces.cl/">
+
+<!-- Open Graph (Facebook, WhatsApp, etc.) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Antojitos Dulces | Repostería y Coctelería">
+<meta property="og:description" content="Tortas y repostería artesanal en Los Álamos, Chile. Cotiza tu torta para cumpleaños, matrimonios y eventos especiales.">
+<meta property="og:image" content="https://antojitosdulces.cl/assets/torta_principal.png">
+<meta property="og:url" content="https://antojitosdulces.cl/">
+<meta property="og:locale" content="es_CL">
+<meta property="og:site_name" content="Antojitos Dulces">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Antojitos Dulces | Repostería y Coctelería">
+<meta name="twitter:description" content="Tortas y repostería artesanal en Los Álamos, Chile.">
+<meta name="twitter:image" content="https://antojitosdulces.cl/assets/torta_principal.png">
+
+<!-- Datos estructurados (Schema.org) — ayuda a Google a entender el negocio -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Bakery",
+  "name": "Antojitos Dulces",
+  "image": "https://antojitosdulces.cl/assets/logo.png",
+  "@id": "https://antojitosdulces.cl/",
+  "url": "https://antojitosdulces.cl/",
+  "telephone": "+56984072985",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Toqui Araucano #135, esquina Simón Carballo",
+    "addressLocality": "Los Álamos",
+    "addressRegion": "Biobío",
+    "addressCountry": "CL"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -37.62678893609067,
+    "longitude": -73.46832573033561
+  },
+  "sameAs": [
+    "https://www.instagram.com/antojitos_dulces_la/"
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/styles.css?v=4">
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R271W5GYZ8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-R271W5GYZ8');
+</script>
 </head>
 <body>
+
 
 <!-- ===== TOP BAR ===== --> 
 <div class="topbar"> 
@@ -360,6 +416,17 @@
           <label for="mensaje">Cuéntanos tu idea</label>
           <textarea id="mensaje" name="mensaje" rows="3" placeholder="Decoración, colores, algún detalle especial..."></textarea>
         </div>
+        <div class="form__row form__consent">
+          <label class="form__consent-label">
+            <input type="checkbox" id="aceptaPoliticas" name="aceptaPoliticas" required>
+            <span>
+              He leído y acepto la
+              <button type="button" class="bottombar__legal-link form__consent-link" data-doc="privacidad">Política de Privacidad</button>
+              y los
+              <button type="button" class="bottombar__legal-link form__consent-link" data-doc="terminos">Términos y Condiciones</button>.
+            </span>
+          </label>
+        </div>
         <button type="submit" class="btn btn--gold form__submit">Enviar cotización</button>
         <p class="form__status" id="formStatus" role="status"></p>
       </form>
@@ -467,6 +534,11 @@
   </div>
 </div>
 
+<!-- ===== BOTÓN FLOTANTE DE WHATSAPP ===== -->
+<a href="https://wa.me/56984072985" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Escríbenos por WhatsApp">
+  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@v10/icons/whatsapp.svg" alt="" class="icon">
+</a>
+
 <!-- ===== BOTÓN VOLVER ARRIBA ===== -->
 <button id="backToTop" class="back-to-top" aria-label="Volver al inicio">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -475,6 +547,6 @@
   </svg>
 </button>
 
-<script src="js/script.js"></script>
+<script src="js/script.js?v=4"></script>
 </body>
 </html>
